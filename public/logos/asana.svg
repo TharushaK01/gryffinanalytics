@@ -1,0 +1,34 @@
+<svg width="148" height="148" viewBox="0 0 148 148" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g filter="url(#filter0_d_867_6558)">
+<rect x="24" y="22" width="100" height="100" rx="16" fill="white"/>
+<rect x="24.5" y="22.5" width="99" height="99" rx="15.5" stroke="#E0DEDC"/>
+<g clip-path="url(#clip0_867_6558)">
+<path d="M53.1289 85.4259L60.8096 79.542C64.8902 84.8678 69.2257 87.3226 74.0515 87.3226C78.8515 87.3226 83.0644 84.8968 86.9612 79.613L94.7515 85.3549C89.1289 92.9743 82.1418 97.0001 74.0515 97.0001C65.987 97.0001 58.9321 93.0001 53.1289 85.4259Z" fill="url(#paint0_linear_867_6558)"/>
+<path d="M74.0255 59.8518L60.3545 71.6324L54.0352 64.3034L74.0545 47.0518L93.9158 64.3163L87.5674 71.6195L74.0255 59.8518Z" fill="url(#paint1_linear_867_6558)"/>
+</g>
+</g>
+<defs>
+<filter id="filter0_d_867_6558" x="0" y="0" width="148" height="148" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feMorphology radius="2" operator="dilate" in="SourceAlpha" result="effect1_dropShadow_867_6558"/>
+<feOffset dy="2"/>
+<feGaussianBlur stdDeviation="11"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_867_6558"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_867_6558" result="shape"/>
+</filter>
+<linearGradient id="paint0_linear_867_6558" x1="53.1289" y1="81.0217" x2="94.7515" y2="81.0217" gradientUnits="userSpaceOnUse">
+<stop stop-color="#8930FD"/>
+<stop offset="1" stop-color="#49CCF9"/>
+</linearGradient>
+<linearGradient id="paint1_linear_867_6558" x1="54.0352" y1="63.7691" x2="93.9158" y2="63.7691" gradientUnits="userSpaceOnUse">
+<stop stop-color="#FF02F0"/>
+<stop offset="1" stop-color="#FFC800"/>
+</linearGradient>
+<clipPath id="clip0_867_6558">
+<rect width="41.9355" height="50" fill="white" transform="translate(53 47)"/>
+</clipPath>
+</defs>
+</svg>
