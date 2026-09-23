@@ -1,5 +1,6 @@
 import Header from "@/components/layout/Header";
 import HeroSection from "@/components/landing/HeroSection";
+import Footer from "@/components/layout/Footer";
 
 export default function Home() {
   return (
@@ -8,6 +9,7 @@ export default function Home() {
       <main>
         <HeroSection />
       </main>
+      <Footer />
     </div>
   );
 }

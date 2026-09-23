@@ -1,5 +1,7 @@
+"use client";
 import Link from "next/link";
 import Image from "next/image";
+import React, { useState } from "react";
 
 interface CardData {
   id: string;
@@ -215,7 +217,151 @@ const comparisonData: ComparisonCard[] = [
   },
 ];
 
+interface Testimonial {
+  id: string;
+  rating: number;
+  quote: string;
+  author: string;
+  role: string;
+  company: string;
+}
+
+const testimonials: Testimonial[] = [
+  {
+    id: "1",
+    rating: 5,
+    quote:
+      "Seamless integration and expert guidance made all the difference. Our data has never been more accessible or valuable.",
+    author: "James Franko",
+    role: "CTO",
+    company: "Pushko",
+  },
+  {
+    id: "2",
+    rating: 5,
+    quote:
+      "Transformed our entire reporting process. What used to take hours now takes seconds. Absolutely essential for our growth.",
+    author: "Sarah Jenkins",
+    role: "Head of Data",
+    company: "Vortex Media",
+  },
+  {
+    id: "3",
+    rating: 5,
+    quote:
+      "The setup was fast and painless. We had our first complete dashboard live on day one, giving us immediate visibility.",
+    author: "Alex Rivera",
+    role: "COO",
+    company: "ScaleFlow",
+  },
+  {
+    id: "4",
+    rating: 5,
+    quote:
+      "We finally have full clarity across marketing and sales channels without dealing with broken custom pipelines.",
+    author: "Michael Chen",
+    role: "VP Growth",
+    company: "Lumina Labs",
+  },
+  {
+    id: "5",
+    rating: 5,
+    quote:
+      "Incredible attention to detail. Every metric we care about is mapped precisely to our operational goals.",
+    author: "Elena Rostova",
+    role: "Product Lead",
+    company: "Nexus",
+  },
+];
+
+interface FaqItem {
+  id: string;
+  question: string;
+  answer: string;
+}
+
+const faqData: FaqItem[] = [
+  {
+    id: "1",
+    question: "What services does Gryffin Analytics provide?",
+    answer:
+      "We build end-to-end analytics systems, including multi-source data integration, custom dashboard setup, automated performance reporting, and ongoing optimization.",
+  },
+  {
+    id: "2",
+    question: "How long does it take to set up our data system?",
+    answer:
+      "Most core setups and dashboards are live within 1 to 2 weeks, allowing your team to get immediate clarity without long development delays.",
+  },
+  {
+    id: "3",
+    question: "Can you connect data from multiple platforms?",
+    answer:
+      "Yes. We connect data from ad platforms, CRMs, websites, payment systems, and custom databases into one unified reporting dashboard.",
+  },
+  {
+    id: "4",
+    question: "Do we need an in-house data engineer or team?",
+    answer:
+      "No. We handle the entire technical infrastructure, setup, maintenance, and updates so your team can focus purely on making data-driven decisions.",
+  },
+  {
+    id: "5",
+    question: "What happens after the initial dashboard setup?",
+    answer:
+      "We provide continuous monitoring, regular optimizations, performance reviews, and updates as your business tools and metrics evolve.",
+  },
+  {
+    id: "6",
+    question: "Is our business and customer data secure?",
+    answer:
+      "Absolutely. All data connections use enterprise-grade encryption and secure API authentication to ensure your business data remains completely protected.",
+  },
+];
+
+function TestimonialCard({ item }: { item: Testimonial }) {
+  return (
+    <div className="w-[300px] sm:w-[380px] lg:w-[420px] rounded-2xl sm:rounded-3xl bg-[#F3F2EE] p-6 sm:p-8 flex flex-col justify-between shrink-0 shadow-sm hover:shadow-md transition-shadow">
+      <div>
+        {/* Green Star Rating */}
+        <div className="flex items-center gap-1 mb-4">
+          {Array.from({ length: item.rating }).map((_, i) => (
+            <svg
+              key={i}
+              className="w-4 h-4 sm:w-5 sm:h-5 fill-[#22C55E]"
+              viewBox="0 0 20 20"
+            >
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+          ))}
+        </div>
+
+        {/* Testimonial Quote */}
+        <p className="text-sm sm:text-base text-gray-800 leading-relaxed font-normal mb-8">
+          &ldquo;{item.quote}&rdquo;
+        </p>
+      </div>
+
+      {/* Author & Role */}
+      <div>
+        <p className="text-xs sm:text-sm font-medium text-[#B2B2B2]">
+          {item.author}
+        </p>
+        <p className="text-xs sm:text-sm text-gray-500">
+          {item.role}, {item.company}
+        </p>
+      </div>
+    </div>
+  );
+}
+
 export default function HomeLandingPage() {
+  const [openId, setOpenId] = useState<string | null>(null);
+
+  const toggleFaq = (id: string) => {
+    setOpenId(openId === id ? null : id);
+  };
+
   return (
     <>
       {/* --- HERO SECTION --- */}
@@ -801,6 +947,171 @@ export default function HomeLandingPage() {
             >
               Book a free call
             </a>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 sm:py-24 bg-[#FAF9F6] text-gray-900 overflow-hidden">
+        {/* Tailwind CSS for Custom Infinite Scroll Keyframes */}
+        <style jsx global>{`
+          @keyframes marquee-left {
+            0% {
+              transform: translateX(0%);
+            }
+            100% {
+              transform: translateX(-50%);
+            }
+          }
+          @keyframes marquee-right {
+            0% {
+              transform: translateX(-50%);
+            }
+            100% {
+              transform: translateX(0%);
+            }
+          }
+          .animate-marquee-left {
+            animation: marquee-left 35s linear infinite;
+          }
+          .animate-marquee-right {
+            animation: marquee-right 35s linear infinite;
+          }
+          .marquee-container:hover .animate-marquee-left,
+          .marquee-container:hover .animate-marquee-right {
+            animation-play-state: paused;
+          }
+        `}</style>
+
+        {/* --- SECTION HEADER --- */}
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 px-4">
+          <h2 className="text-3xl sm:text-42px lg:text-5xl font-medium tracking-tight text-[#000000] mb-4 sm:mb-6">
+            Trusted by Business Like Yours
+          </h2>
+          <p className="text-sm sm:text-[18px] lg:text-lg text-[#434343] font-light leading-relaxed">
+            Real feedback from teams using Gryffin Analytics to connect their
+            data, understand performance and make faster decisions.
+          </p>
+        </div>
+
+        {/* --- MARQUEE ROWS WRAPPER WITH FADE GRADIENTS --- */}
+        <div className="relative w-full overflow-hidden flex flex-col gap-5 sm:gap-6">
+          {/* Soft edge blur overlays */}
+          <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-r from-[#FAF9F6] to-transparent z-10" />
+          <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-l from-[#FAF9F6] to-transparent z-10" />
+
+          {/* --- ROW 1: RIGHT TO LEFT (MARQUEE LEFT) --- */}
+          <div className="marquee-container flex w-full overflow-hidden select-none">
+            <div className="flex shrink-0 gap-5 sm:gap-6 animate-marquee-left pr-5 sm:pr-6">
+              {[...testimonials, ...testimonials].map((item, idx) => (
+                <TestimonialCard key={`row1-${idx}`} item={item} />
+              ))}
+            </div>
+          </div>
+
+          {/* --- ROW 2: LEFT TO RIGHT (MARQUEE RIGHT) --- */}
+          <div className="marquee-container flex w-full overflow-hidden select-none">
+            <div className="flex shrink-0 gap-5 sm:gap-6 animate-marquee-right pr-5 sm:pr-6">
+              {[...testimonials, ...testimonials].map((item, idx) => (
+                <TestimonialCard key={`row2-${idx}`} item={item} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 bg-[#FAF9F6]">
+        <div className="max-w-6xl mx-auto">
+          {/* --- MAIN ROUNDED CARD BANNER --- */}
+          <div className="relative rounded-3xl sm:rounded-[32px] overflow-hidden bg-red-950 text-white p-8 sm:p-14 lg:p-20 text-center shadow-xl">
+            {/* Background Image Layer */}
+            <div className="absolute inset-0 z-0">
+              <Image
+                src="/hero-bg.svg"
+                alt="CTA Cloud Background"
+                fill
+                priority
+                className="object-cover object-center"
+              />
+              {/* Subtle dark tint overlay for text legibility */}
+              <div className="absolute inset-0 bg-black/10" />
+            </div>
+
+            {/* Foreground Text Content */}
+            <div className="relative z-10 max-w-2xl mx-auto flex flex-col items-center">
+              <h2 className="text-3xl sm:text-60px lg:text-5xl font-medium tracking-tight text-white leading-tight mb-4 sm:mb-6">
+                Ready to unlock the power <br className="hidden sm:inline" />
+                of your data?
+              </h2>
+
+              <p className="text-xs sm:text-18px lg:text-lg text-white/90 font-regular leading-relaxed mb-8 sm:mb-10 max-w-xl">
+                Our team is here to help you transform insights into action.
+                Whether you need a consultation or have specific questions about
+                our services.
+              </p>
+
+              <a
+                href="#book-call"
+                className="inline-flex items-center justify-center bg-white text-gray-900 font-medium text-sm sm:text-base px-7 sm:px-9 py-3.5 sm:py-4 rounded-lg shadow-md hover:bg-white/95 transition-all duration-200"
+              >
+                Book a free call
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-[#FAF9F6] text-gray-900">
+        <div className="max-w-4xl mx-auto">
+          {/* --- SECTION HEADER --- */}
+          <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
+            <h2 className="text-3xl sm:text-42px lg:text-5xl font-medium tracking-tight text-[#000000] mb-3 sm:mb-4">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-sm sm:text-18px text-[#434343] font-regular leading-relaxed">
+              We don’t just give you reports we give you results
+            </p>
+          </div>
+
+          {/* --- FAQ ACCORDION LIST --- */}
+          <div className="flex flex-col gap-3 sm:gap-4">
+            {faqData.map((faq) => {
+              const isOpen = openId === faq.id;
+
+              return (
+                <div
+                  key={faq.id}
+                  className="rounded-2xl sm:rounded-3xl bg-[#F8F7F4] border border-gray-100/80 overflow-hidden transition-colors duration-200"
+                >
+                  <button
+                    type="button"
+                    onClick={() => toggleFaq(faq.id)}
+                    className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 cursor-pointer focus:outline-none"
+                  >
+                    <span className="text-base sm:text-lg font-medium text-gray-900 leading-snug">
+                      {faq.question}
+                    </span>
+
+                    {/* Red Plus Icon with Rotate Animation */}
+                    <span className="flex-shrink-0 w-6 h-6 flex items-center justify-center text-red-600 font-semibold text-xl leading-none">
+                      <span
+                        className={`inline-block transition-transform duration-300 ${
+                          isOpen ? "rotate-45" : "rotate-0"
+                        }`}
+                      >
+                        +
+                      </span>
+                    </span>
+                  </button>
+
+                  {/* Collapsible Answer Box */}
+                  {isOpen && (
+                    <div className="px-5 sm:px-6 pb-5 sm:pb-6 text-sm sm:text-base text-gray-600 font-light leading-relaxed border-t border-gray-200/50 pt-3">
+                      {faq.answer}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
